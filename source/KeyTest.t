@@ -15,36 +15,25 @@ var y2 : int := 10
 var ms : int := 100
 drawfillbox (x1, y1, x2, y2, blue)
 View.Update
+
 var chars : array char of boolean
 loop
     Input.KeyDown (chars)
-    if chars (KEY_UP_ARROW) then
+    if chars (KEY_UP_ARROW) or chars ('w') then
 	y1 := y1 + 15
 	y2 := y2 + 15
-	cls
-	drawfillbox (x1, y1, x2, y2, blue)
-	View.Update
-	delay (ms)
-    elsif chars (KEY_DOWN_ARROW) then
+    elsif chars (KEY_DOWN_ARROW) or chars ('s') then
 	y1 := y1 - 15
 	y2 := y2 - 15
-	cls
-	drawfillbox (x1, y1, x2, y2, blue)
-	View.Update
-	delay (ms)
-    elsif chars (KEY_LEFT_ARROW) then
+    elsif chars (KEY_LEFT_ARROW) or chars ('a') then
 	x1 := x1 - 15
 	x2 := x2 - 15
-	cls
-	drawfillbox (x1, y1, x2, y2, blue)
-	View.Update
-	delay (ms)
-    elsif chars (KEY_RIGHT_ARROW) then
+    elsif chars (KEY_RIGHT_ARROW) or chars ('d') then
 	x1 := x1 + 15
 	x2 := x2 + 15
-	cls
-	drawfillbox (x1, y1, x2, y2, blue)
-	View.Update
-	delay (ms)
     end if
+    cls
+    drawfillbox (x1, y1, x2, y2, blue)
+    View.Update
+    delay (ms)
 end loop
