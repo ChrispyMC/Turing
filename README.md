@@ -1,2 +1,2 @@
 # Instructions
-The code you see in **KeyTest.t** uses the *Turing* programming language. GitHub currently does not support this language as basically only high schools in Ontario, Canada use the language for computer science, as far as I know.
+The code you see in **KeyTest.t** requires you to use Turing or @Open-Turing-Project as an editor. Notepad++ does not work as it is not supported.
