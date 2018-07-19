@@ -12,7 +12,6 @@ var y2 : int := y1 + Pic.Height (playbutton)
 var x, y, button : int
 
 procedure Start
-    delay (750)
     if not Sys.Exec ("DodgeGame.exe") then
 	put "The Sys.Exec call failed"
 	put "Error: ", Error.LastMsg
