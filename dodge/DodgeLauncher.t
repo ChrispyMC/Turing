@@ -18,8 +18,6 @@ procedure Start
     end if
 end Start
 
-locate (1, 1)
-put "Game: v1.0 | Launcher: v1.1"
 var logo : int := Pic.FileNew ("logo.jpg")
 Pic.Draw (logo, maxx div 2 - 61, maxy - 85, 0)
 Pic.Draw (playbutton, maxx div 2 - 78, 75, 0)
@@ -27,7 +25,7 @@ drawbox (x1, y1, x2, y2, black)
 
 loop
     Mouse.Where (x, y, button)
-    if x1 < x and y1 < x and x2 > x and y2 > x and button = 1 then
+    if x1 < x and y1 < x and x2 > x and y2 > x then
 	Start
 	exit
     end if
