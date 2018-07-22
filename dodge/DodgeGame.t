@@ -4,7 +4,7 @@
 %Game about dodging obstacles
 
 %Set window size and background colour
-View.Set ("graphics:560;340,nobuttonbar,position:center;center")
+View.Set ("title:Dodge,graphics:560;340,nobuttonbar,position:center;center")
 colourback (white)
 cls
 

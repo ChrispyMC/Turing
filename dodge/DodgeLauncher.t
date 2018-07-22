@@ -3,13 +3,9 @@
 
 % The "GUI.CreateButtonFull" program.
 import GUI
-View.Set ("graphics:400;300,nobuttonbar,position:center;center")
-var playbutton : int := Pic.FileNew ("playbutton.bmp")
-var x1 : int := maxx div 2 - 78
-var y1 : int := 75
-var x2 : int := x1 + Pic.Width (playbutton)
-var y2 : int := y1 + Pic.Height (playbutton)
-var x, y, button : int
+View.Set ("title:Dodge Launcher,graphics:350;250,nobuttonbar,position:center;center")
+
+put "[DEBUG] Window ID: ", Window.GetActive
 
 procedure Start
     if not Sys.Exec ("DodgeGame.exe") then
@@ -18,15 +14,37 @@ procedure Start
     end if
 end Start
 
+var windowCreated : int := 0
+var guideWindow : int := 0
+var GWCB : int
+procedure closeWindow
+    Window.Hide (guideWindow)
+end closeWindow
+procedure Guide
+    if windowCreated = 0 then
+	guideWindow := Window.Open ("title:Guide,graphics:300;100,position:center;center")
+	Window.SetPosition (guideWindow, 0, 0)
+	windowCreated := 1
+	Window.SetActive (guideWindow)
+	put "Use the Arrow keys or WASD to move."
+	put "Dodge the red squares and move to the"
+	put "right. Have fun!"
+	GWCB := GUI.CreateButton (maxx - 60, 1, 0, "Close", closeWindow)
+    else
+	Window.Show (guideWindow)
+    end if
+end Guide
+
 var logo : int := Pic.FileNew ("logo.jpg")
-Pic.Draw (logo, maxx div 2 - 61, maxy - 85, 0)
-Pic.Draw (playbutton, maxx div 2 - 78, 75, 0)
-drawbox (x1, y1, x2, y2, black)
+Pic.Draw (logo, maxx div 2 - 63, maxy - 79, 0)
+var playbutton : int := GUI.CreateButtonFull (maxx div 2 - 31, 110, 0, "Play",
+    Start, 0, '^P', false)
+
+var H2P : int := GUI.CreateButtonFull (maxx div 2 - 76, 52, 0, "Guide",
+    Guide, 0, '^H', false)
+
+var quitBtn : int := GUI.CreateButton (maxx div 2 + 5, 52, 0, "Quit", GUI.Quit)
 
 loop
-    Mouse.Where (x, y, button)
-    if x1 < x and y1 < x and x2 > x and y2 > x then
-	Start
-	exit
-    end if
+    exit when GUI.ProcessEvent
 end loop
